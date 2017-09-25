@@ -1,0 +1,55 @@
+/usr/bin/python2.7 /home/mohansai/python/Mohansai_samples/Excel/sample_1
+['Workbook', '__builtins__', '__doc__', '__file__', '__name__', '__package__', '__path__', 'absolute_import', 'child', 'defined_name', 'external_link', 'external_reference', 'function_group', 'parser', 'pivot', 'properties', 'protection', 'smart_tags', 'views', 'web', 'workbook']
+['Worksheet', '__builtins__', '__doc__', '__file__', '__name__', '__package__', '__path__', 'absolute_import', 'copier', 'datavalidation', 'dimensions', 'drawing', 'filters', 'header_footer', 'hyperlink', 'merge', 'page', 'pagebreak', 'properties', 'protection', 'read_only', 'related', 'table', 'views', 'worksheet']
+Help on package openpyxl:
+
+NAME
+    openpyxl - # Copyright (c) 2010-2017 openpyxl
+
+FILE
+    /home/mohansai/.local/lib/python2.7/site-packages/openpyxl/__init__.py
+
+PACKAGE CONTENTS
+    cell (package)
+    chart (package)
+    chartsheet (package)
+    comments (package)
+    compat (package)
+    conftest
+    descriptors (package)
+    drawing (package)
+    formatting (package)
+    formula (package)
+    packaging (package)
+    reader (package)
+    styles (package)
+    utils (package)
+    workbook (package)
+    worksheet (package)
+    writer (package)
+    xml (package)
+
+DATA
+    LXML = False
+    NUMPY = False
+    PANDAS = False
+    __author__ = u'See AUTHORS'
+    __author_email__ = u'charlie.clark@clark-consulting.eu'
+    __license__ = u'MIT/Expat'
+    __maintainer_email__ = u'openpyxl-users@googlegroups.com'
+    __url__ = u'https://openpyxl.readthedocs.io'
+    __version__ = u'2.4.8'
+    constants = {u'__author__': u'See AUTHORS', u'__author_email__': u'cha...
+    here = '/home/mohansai/.local/lib/python2.7/site-packages/openpyxl'
+    src = <closed file '/home/mohansai/.local/lib/python2.7/site-packages/...
+    src_file = '/home/mohansai/.local/lib/python2.7/site-packages/openpyxl...
+
+VERSION
+    2.4.8
+
+AUTHOR
+    See AUTHORS
+
+
+
+Process finished with exit code 0

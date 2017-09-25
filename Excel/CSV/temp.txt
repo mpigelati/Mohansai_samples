@@ -1,0 +1,1 @@
+https://stackoverflow.com/questions/45259655/write-data-to-excel-or-csv-file-using-python

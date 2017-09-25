@@ -1,0 +1,5 @@
+error:- If we attempt to access a data item with a key, which is not part of the dictionary, we get an error as follows −
+
+dict = {'Name': 'Zara', 'Age': 7, 'Class': 'First'}
+
+print "dict['Alice']: ", dict['Alice']
