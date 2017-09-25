@@ -1,1 +1,17 @@
 https://stackoverflow.com/questions/45259655/write-data-to-excel-or-csv-file-using-python
+https://www.datacamp.com/community/tutorials/python-excel-tutorial#gs.Q7MXJiA
+
+How To Parse and Convert csv to excel using Python
+
+https://stackoverflow.com/questions/17684610/python-convert-csv-to-xlsx
+
+https://stackoverflow.com/questions/12976378/openpyxl-convert-csv-to-excel
+
+https://www.sitepoint.com/using-python-parse-spreadsheet-data/
+
+https://www.datacamp.com/community/tutorials/python-excel-tutorial#gs.NLdSxp0
+
+
+
+
+
