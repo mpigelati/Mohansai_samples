@@ -23,7 +23,7 @@ json_list = [
 ]
 
 start_time = json_list[0]["State"]["StartedAt"]
-print start_time
+print (start_time)
 #start_datetime = my_date_time_mod.convert_docker_date_time_to_datetime(start_time)
 #print start_datetime
 
@@ -60,5 +60,5 @@ data=[{
 }]
 
 
-print data[0]["Metabuild_Info"]["Meta_Build_ID"]
+print (data[0]["Metabuild_Info"]["Meta_Build_ID"])
 #print ("Metabuild_Info"[5])
