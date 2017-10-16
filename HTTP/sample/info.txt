@@ -1,0 +1,1024 @@
+/usr/bin/python2.7 /home/mohansai/python/Mohansai_samples/HTTP/sample/sample.py
+Help on package httplib2:
+
+NAME
+    httplib2
+
+FILE
+    /home/mohansai/.local/lib/python2.7/site-packages/httplib2/__init__.py
+
+PACKAGE CONTENTS
+    iri2uri
+    socks
+
+CLASSES
+    __builtin__.dict(__builtin__.object)
+        Response
+    __builtin__.object
+        Http
+        ProxyInfo
+    exceptions.Exception(exceptions.BaseException)
+        HttpLib2Error
+            ProxiesUnavailableError
+    HttpLib2ErrorWithResponse(HttpLib2Error)
+        FailedToDecompressContent
+        RedirectLimit
+        RedirectMissingLocation
+        UnimplementedDigestAuthOptionError
+        UnimplementedHmacDigestAuthOptionError
+
+    class FailedToDecompressContent(HttpLib2ErrorWithResponse)
+     |  Method resolution order:
+     |      FailedToDecompressContent
+     |      HttpLib2ErrorWithResponse
+     |      HttpLib2Error
+     |      exceptions.Exception
+     |      exceptions.BaseException
+     |      __builtin__.object
+     |
+     |  Methods inherited from HttpLib2ErrorWithResponse:
+     |
+     |  __init__(self, desc, response, content)
+     |
+     |  ----------------------------------------------------------------------
+     |  Data descriptors inherited from HttpLib2Error:
+     |
+     |  __weakref__
+     |      list of weak references to the object (if defined)
+     |
+     |  ----------------------------------------------------------------------
+     |  Data and other attributes inherited from exceptions.Exception:
+     |
+     |  __new__ = <built-in method __new__ of type object>
+     |      T.__new__(S, ...) -> a new object with type S, a subtype of T
+     |
+     |  ----------------------------------------------------------------------
+     |  Methods inherited from exceptions.BaseException:
+     |
+     |  __delattr__(...)
+     |      x.__delattr__('name') <==> del x.name
+     |
+     |  __getattribute__(...)
+     |      x.__getattribute__('name') <==> x.name
+     |
+     |  __getitem__(...)
+     |      x.__getitem__(y) <==> x[y]
+     |
+     |  __getslice__(...)
+     |      x.__getslice__(i, j) <==> x[i:j]
+     |
+     |      Use of negative indices is not supported.
+     |
+     |  __reduce__(...)
+     |
+     |  __repr__(...)
+     |      x.__repr__() <==> repr(x)
+     |
+     |  __setattr__(...)
+     |      x.__setattr__('name', value) <==> x.name = value
+     |
+     |  __setstate__(...)
+     |
+     |  __str__(...)
+     |      x.__str__() <==> str(x)
+     |
+     |  __unicode__(...)
+     |
+     |  ----------------------------------------------------------------------
+     |  Data descriptors inherited from exceptions.BaseException:
+     |
+     |  __dict__
+     |
+     |  args
+     |
+     |  message
+
+    class Http(__builtin__.object)
+     |  An HTTP client that handles:
+     |
+     |  - all methods
+     |  - caching
+     |  - ETags
+     |  - compression,
+     |  - HTTPS
+     |  - Basic
+     |  - Digest
+     |  - WSSE
+     |
+     |  and more.
+     |
+     |  Methods defined here:
+     |
+     |  __getstate__(self)
+     |
+     |  __init__(self, cache=None, timeout=None, proxy_info=<function proxy_info_from_environment>, ca_certs=None, disable_ssl_certificate_validation=False, ssl_version=None)
+     |      If 'cache' is a string then it is used as a directory name for
+     |      a disk cache. Otherwise it must be an object that supports the
+     |      same interface as FileCache.
+     |
+     |      All timeouts are in seconds. If None is passed for timeout
+     |      then Python's default timeout for sockets will be used. See
+     |      for example the docs of socket.setdefaulttimeout():
+     |      http://docs.python.org/library/socket.html#socket.setdefaulttimeout
+     |
+     |      `proxy_info` may be:
+     |        - a callable that takes the http scheme ('http' or 'https') and
+     |          returns a ProxyInfo instance per request. By default, uses
+     |          proxy_nfo_from_environment.
+     |        - a ProxyInfo instance (static proxy config).
+     |        - None (proxy disabled).
+     |
+     |      ca_certs is the path of a file containing root CA certificates for SSL
+     |      server certificate validation.  By default, a CA cert file bundled with
+     |      httplib2 is used.
+     |
+     |      If disable_ssl_certificate_validation is true, SSL cert validation will
+     |      not be performed.
+     |
+     |      By default, ssl.PROTOCOL_SSLv23 will be used for the ssl version.
+     |
+     |  __setstate__(self, state)
+     |
+     |  add_certificate(self, key, cert, domain)
+     |      Add a key and cert that will be used
+     |      any time a request requires authentication.
+     |
+     |  add_credentials(self, name, password, domain='')
+     |      Add a name and password that will be used
+     |      any time a request requires authentication.
+     |
+     |  clear_credentials(self)
+     |      Remove all the names and passwords
+     |      that are used for authentication
+     |
+     |  request(self, uri, method='GET', body=None, headers=None, redirections=5, connection_type=None)
+     |      Performs a single HTTP request.
+     |
+     |      The 'uri' is the URI of the HTTP resource and can begin with either
+     |      'http' or 'https'. The value of 'uri' must be an absolute URI.
+     |
+     |      The 'method' is the HTTP method to perform, such as GET, POST, DELETE,
+     |      etc. There is no restriction on the methods allowed.
+     |
+     |      The 'body' is the entity body to be sent with the request. It is a
+     |      string object.
+     |
+     |      Any extra headers that are to be sent with the request should be
+     |      provided in the 'headers' dictionary.
+     |
+     |      The maximum number of redirect to follow before raising an
+     |      exception is 'redirections. The default is 5.
+     |
+     |      The return value is a tuple of (response, content), the first
+     |      being and instance of the 'Response' class, the second being
+     |      a string that contains the response entity body.
+     |
+     |  ----------------------------------------------------------------------
+     |  Data descriptors defined here:
+     |
+     |  __dict__
+     |      dictionary for instance variables (if defined)
+     |
+     |  __weakref__
+     |      list of weak references to the object (if defined)
+
+    class HttpLib2Error(exceptions.Exception)
+     |  # All exceptions raised here derive from HttpLib2Error
+     |
+     |  Method resolution order:
+     |      HttpLib2Error
+     |      exceptions.Exception
+     |      exceptions.BaseException
+     |      __builtin__.object
+     |
+     |  Data descriptors defined here:
+     |
+     |  __weakref__
+     |      list of weak references to the object (if defined)
+     |
+     |  ----------------------------------------------------------------------
+     |  Methods inherited from exceptions.Exception:
+     |
+     |  __init__(...)
+     |      x.__init__(...) initializes x; see help(type(x)) for signature
+     |
+     |  ----------------------------------------------------------------------
+     |  Data and other attributes inherited from exceptions.Exception:
+     |
+     |  __new__ = <built-in method __new__ of type object>
+     |      T.__new__(S, ...) -> a new object with type S, a subtype of T
+     |
+     |  ----------------------------------------------------------------------
+     |  Methods inherited from exceptions.BaseException:
+     |
+     |  __delattr__(...)
+     |      x.__delattr__('name') <==> del x.name
+     |
+     |  __getattribute__(...)
+     |      x.__getattribute__('name') <==> x.name
+     |
+     |  __getitem__(...)
+     |      x.__getitem__(y) <==> x[y]
+     |
+     |  __getslice__(...)
+     |      x.__getslice__(i, j) <==> x[i:j]
+     |
+     |      Use of negative indices is not supported.
+     |
+     |  __reduce__(...)
+     |
+     |  __repr__(...)
+     |      x.__repr__() <==> repr(x)
+     |
+     |  __setattr__(...)
+     |      x.__setattr__('name', value) <==> x.name = value
+     |
+     |  __setstate__(...)
+     |
+     |  __str__(...)
+     |      x.__str__() <==> str(x)
+     |
+     |  __unicode__(...)
+     |
+     |  ----------------------------------------------------------------------
+     |  Data descriptors inherited from exceptions.BaseException:
+     |
+     |  __dict__
+     |
+     |  args
+     |
+     |  message
+
+    class ProxiesUnavailableError(HttpLib2Error)
+     |  Method resolution order:
+     |      ProxiesUnavailableError
+     |      HttpLib2Error
+     |      exceptions.Exception
+     |      exceptions.BaseException
+     |      __builtin__.object
+     |
+     |  Data descriptors inherited from HttpLib2Error:
+     |
+     |  __weakref__
+     |      list of weak references to the object (if defined)
+     |
+     |  ----------------------------------------------------------------------
+     |  Methods inherited from exceptions.Exception:
+     |
+     |  __init__(...)
+     |      x.__init__(...) initializes x; see help(type(x)) for signature
+     |
+     |  ----------------------------------------------------------------------
+     |  Data and other attributes inherited from exceptions.Exception:
+     |
+     |  __new__ = <built-in method __new__ of type object>
+     |      T.__new__(S, ...) -> a new object with type S, a subtype of T
+     |
+     |  ----------------------------------------------------------------------
+     |  Methods inherited from exceptions.BaseException:
+     |
+     |  __delattr__(...)
+     |      x.__delattr__('name') <==> del x.name
+     |
+     |  __getattribute__(...)
+     |      x.__getattribute__('name') <==> x.name
+     |
+     |  __getitem__(...)
+     |      x.__getitem__(y) <==> x[y]
+     |
+     |  __getslice__(...)
+     |      x.__getslice__(i, j) <==> x[i:j]
+     |
+     |      Use of negative indices is not supported.
+     |
+     |  __reduce__(...)
+     |
+     |  __repr__(...)
+     |      x.__repr__() <==> repr(x)
+     |
+     |  __setattr__(...)
+     |      x.__setattr__('name', value) <==> x.name = value
+     |
+     |  __setstate__(...)
+     |
+     |  __str__(...)
+     |      x.__str__() <==> str(x)
+     |
+     |  __unicode__(...)
+     |
+     |  ----------------------------------------------------------------------
+     |  Data descriptors inherited from exceptions.BaseException:
+     |
+     |  __dict__
+     |
+     |  args
+     |
+     |  message
+
+    class ProxyInfo(__builtin__.object)
+     |  Collect information required to use a proxy.
+     |
+     |  Methods defined here:
+     |
+     |  __init__(self, proxy_type, proxy_host, proxy_port, proxy_rdns=True, proxy_user=None, proxy_pass=None, proxy_headers=None)
+     |      Args:
+     |        proxy_type: The type of proxy server.  This must be set to one of
+     |        socks.PROXY_TYPE_XXX constants.  For example:
+     |
+     |          p = ProxyInfo(proxy_type=socks.PROXY_TYPE_HTTP,
+     |            proxy_host='localhost', proxy_port=8000)
+     |
+     |        proxy_host: The hostname or IP address of the proxy server.
+     |
+     |        proxy_port: The port that the proxy server is running on.
+     |
+     |        proxy_rdns: If True (default), DNS queries will not be performed
+     |        locally, and instead, handed to the proxy to resolve.  This is useful
+     |        if the network does not allow resolution of non-local names.  In
+     |        httplib2 0.9 and earlier, this defaulted to False.
+     |
+     |        proxy_user: The username used to authenticate with the proxy server.
+     |
+     |        proxy_pass: The password used to authenticate with the proxy server.
+     |
+     |        proxy_headers: Additional or modified headers for the proxy connect request.
+     |
+     |  applies_to(self, hostname)
+     |
+     |  astuple(self)
+     |
+     |  bypass_host(self, hostname)
+     |      Has this host been excluded from the proxy config
+     |
+     |  isgood(self)
+     |
+     |  ----------------------------------------------------------------------
+     |  Data descriptors defined here:
+     |
+     |  __dict__
+     |      dictionary for instance variables (if defined)
+     |
+     |  __weakref__
+     |      list of weak references to the object (if defined)
+     |
+     |  ----------------------------------------------------------------------
+     |  Data and other attributes defined here:
+     |
+     |  bypass_hosts = ()
+
+    class RedirectLimit(HttpLib2ErrorWithResponse)
+     |  Method resolution order:
+     |      RedirectLimit
+     |      HttpLib2ErrorWithResponse
+     |      HttpLib2Error
+     |      exceptions.Exception
+     |      exceptions.BaseException
+     |      __builtin__.object
+     |
+     |  Methods inherited from HttpLib2ErrorWithResponse:
+     |
+     |  __init__(self, desc, response, content)
+     |
+     |  ----------------------------------------------------------------------
+     |  Data descriptors inherited from HttpLib2Error:
+     |
+     |  __weakref__
+     |      list of weak references to the object (if defined)
+     |
+     |  ----------------------------------------------------------------------
+     |  Data and other attributes inherited from exceptions.Exception:
+     |
+     |  __new__ = <built-in method __new__ of type object>
+     |      T.__new__(S, ...) -> a new object with type S, a subtype of T
+     |
+     |  ----------------------------------------------------------------------
+     |  Methods inherited from exceptions.BaseException:
+     |
+     |  __delattr__(...)
+     |      x.__delattr__('name') <==> del x.name
+     |
+     |  __getattribute__(...)
+     |      x.__getattribute__('name') <==> x.name
+     |
+     |  __getitem__(...)
+     |      x.__getitem__(y) <==> x[y]
+     |
+     |  __getslice__(...)
+     |      x.__getslice__(i, j) <==> x[i:j]
+     |
+     |      Use of negative indices is not supported.
+     |
+     |  __reduce__(...)
+     |
+     |  __repr__(...)
+     |      x.__repr__() <==> repr(x)
+     |
+     |  __setattr__(...)
+     |      x.__setattr__('name', value) <==> x.name = value
+     |
+     |  __setstate__(...)
+     |
+     |  __str__(...)
+     |      x.__str__() <==> str(x)
+     |
+     |  __unicode__(...)
+     |
+     |  ----------------------------------------------------------------------
+     |  Data descriptors inherited from exceptions.BaseException:
+     |
+     |  __dict__
+     |
+     |  args
+     |
+     |  message
+
+    class RedirectMissingLocation(HttpLib2ErrorWithResponse)
+     |  Method resolution order:
+     |      RedirectMissingLocation
+     |      HttpLib2ErrorWithResponse
+     |      HttpLib2Error
+     |      exceptions.Exception
+     |      exceptions.BaseException
+     |      __builtin__.object
+     |
+     |  Methods inherited from HttpLib2ErrorWithResponse:
+     |
+     |  __init__(self, desc, response, content)
+     |
+     |  ----------------------------------------------------------------------
+     |  Data descriptors inherited from HttpLib2Error:
+     |
+     |  __weakref__
+     |      list of weak references to the object (if defined)
+     |
+     |  ----------------------------------------------------------------------
+     |  Data and other attributes inherited from exceptions.Exception:
+     |
+     |  __new__ = <built-in method __new__ of type object>
+     |      T.__new__(S, ...) -> a new object with type S, a subtype of T
+     |
+     |  ----------------------------------------------------------------------
+     |  Methods inherited from exceptions.BaseException:
+     |
+     |  __delattr__(...)
+     |      x.__delattr__('name') <==> del x.name
+     |
+     |  __getattribute__(...)
+     |      x.__getattribute__('name') <==> x.name
+     |
+     |  __getitem__(...)
+     |      x.__getitem__(y) <==> x[y]
+     |
+     |  __getslice__(...)
+     |      x.__getslice__(i, j) <==> x[i:j]
+     |
+     |      Use of negative indices is not supported.
+     |
+     |  __reduce__(...)
+     |
+     |  __repr__(...)
+     |      x.__repr__() <==> repr(x)
+     |
+     |  __setattr__(...)
+     |      x.__setattr__('name', value) <==> x.name = value
+     |
+     |  __setstate__(...)
+     |
+     |  __str__(...)
+     |      x.__str__() <==> str(x)
+     |
+     |  __unicode__(...)
+     |
+     |  ----------------------------------------------------------------------
+     |  Data descriptors inherited from exceptions.BaseException:
+     |
+     |  __dict__
+     |
+     |  args
+     |
+     |  message
+
+    class Response(__builtin__.dict)
+     |  An object more like email.Message than httplib.HTTPResponse.
+     |
+     |  Method resolution order:
+     |      Response
+     |      __builtin__.dict
+     |      __builtin__.object
+     |
+     |  Methods defined here:
+     |
+     |  __getattr__(self, name)
+     |
+     |  __init__(self, info)
+     |
+     |  ----------------------------------------------------------------------
+     |  Data descriptors defined here:
+     |
+     |  __dict__
+     |      dictionary for instance variables (if defined)
+     |
+     |  __weakref__
+     |      list of weak references to the object (if defined)
+     |
+     |  ----------------------------------------------------------------------
+     |  Data and other attributes defined here:
+     |
+     |  fromcache = False
+     |
+     |  previous = None
+     |
+     |  reason = 'Ok'
+     |
+     |  status = 200
+     |
+     |  version = 11
+     |
+     |  ----------------------------------------------------------------------
+     |  Methods inherited from __builtin__.dict:
+     |
+     |  __cmp__(...)
+     |      x.__cmp__(y) <==> cmp(x,y)
+     |
+     |  __contains__(...)
+     |      D.__contains__(k) -> True if D has a key k, else False
+     |
+     |  __delitem__(...)
+     |      x.__delitem__(y) <==> del x[y]
+     |
+     |  __eq__(...)
+     |      x.__eq__(y) <==> x==y
+     |
+     |  __ge__(...)
+     |      x.__ge__(y) <==> x>=y
+     |
+     |  __getattribute__(...)
+     |      x.__getattribute__('name') <==> x.name
+     |
+     |  __getitem__(...)
+     |      x.__getitem__(y) <==> x[y]
+     |
+     |  __gt__(...)
+     |      x.__gt__(y) <==> x>y
+     |
+     |  __iter__(...)
+     |      x.__iter__() <==> iter(x)
+     |
+     |  __le__(...)
+     |      x.__le__(y) <==> x<=y
+     |
+     |  __len__(...)
+     |      x.__len__() <==> len(x)
+     |
+     |  __lt__(...)
+     |      x.__lt__(y) <==> x<y
+     |
+     |  __ne__(...)
+     |      x.__ne__(y) <==> x!=y
+     |
+     |  __repr__(...)
+     |      x.__repr__() <==> repr(x)
+     |
+     |  __setitem__(...)
+     |      x.__setitem__(i, y) <==> x[i]=y
+     |
+     |  __sizeof__(...)
+     |      D.__sizeof__() -> size of D in memory, in bytes
+     |
+     |  clear(...)
+     |      D.clear() -> None.  Remove all items from D.
+     |
+     |  copy(...)
+     |      D.copy() -> a shallow copy of D
+     |
+     |  fromkeys(...)
+     |      dict.fromkeys(S[,v]) -> New dict with keys from S and values equal to v.
+     |      v defaults to None.
+     |
+     |  get(...)
+     |      D.get(k[,d]) -> D[k] if k in D, else d.  d defaults to None.
+     |
+     |  has_key(...)
+     |      D.has_key(k) -> True if D has a key k, else False
+     |
+     |  items(...)
+     |      D.items() -> list of D's (key, value) pairs, as 2-tuples
+     |
+     |  iteritems(...)
+     |      D.iteritems() -> an iterator over the (key, value) items of D
+     |
+     |  iterkeys(...)
+     |      D.iterkeys() -> an iterator over the keys of D
+     |
+     |  itervalues(...)
+     |      D.itervalues() -> an iterator over the values of D
+     |
+     |  keys(...)
+     |      D.keys() -> list of D's keys
+     |
+     |  pop(...)
+     |      D.pop(k[,d]) -> v, remove specified key and return the corresponding value.
+     |      If key is not found, d is returned if given, otherwise KeyError is raised
+     |
+     |  popitem(...)
+     |      D.popitem() -> (k, v), remove and return some (key, value) pair as a
+     |      2-tuple; but raise KeyError if D is empty.
+     |
+     |  setdefault(...)
+     |      D.setdefault(k[,d]) -> D.get(k,d), also set D[k]=d if k not in D
+     |
+     |  update(...)
+     |      D.update([E, ]**F) -> None.  Update D from dict/iterable E and F.
+     |      If E present and has a .keys() method, does:     for k in E: D[k] = E[k]
+     |      If E present and lacks .keys() method, does:     for (k, v) in E: D[k] = v
+     |      In either case, this is followed by: for k in F: D[k] = F[k]
+     |
+     |  values(...)
+     |      D.values() -> list of D's values
+     |
+     |  viewitems(...)
+     |      D.viewitems() -> a set-like object providing a view on D's items
+     |
+     |  viewkeys(...)
+     |      D.viewkeys() -> a set-like object providing a view on D's keys
+     |
+     |  viewvalues(...)
+     |      D.viewvalues() -> an object providing a view on D's values
+     |
+     |  ----------------------------------------------------------------------
+     |  Data and other attributes inherited from __builtin__.dict:
+     |
+     |  __hash__ = None
+     |
+     |  __new__ = <built-in method __new__ of type object>
+     |      T.__new__(S, ...) -> a new object with type S, a subtype of T
+
+    class UnimplementedDigestAuthOptionError(HttpLib2ErrorWithResponse)
+     |  Method resolution order:
+     |      UnimplementedDigestAuthOptionError
+     |      HttpLib2ErrorWithResponse
+     |      HttpLib2Error
+     |      exceptions.Exception
+     |      exceptions.BaseException
+     |      __builtin__.object
+     |
+     |  Methods inherited from HttpLib2ErrorWithResponse:
+     |
+     |  __init__(self, desc, response, content)
+     |
+     |  ----------------------------------------------------------------------
+     |  Data descriptors inherited from HttpLib2Error:
+     |
+     |  __weakref__
+     |      list of weak references to the object (if defined)
+     |
+     |  ----------------------------------------------------------------------
+     |  Data and other attributes inherited from exceptions.Exception:
+     |
+     |  __new__ = <built-in method __new__ of type object>
+     |      T.__new__(S, ...) -> a new object with type S, a subtype of T
+     |
+     |  ----------------------------------------------------------------------
+     |  Methods inherited from exceptions.BaseException:
+     |
+     |  __delattr__(...)
+     |      x.__delattr__('name') <==> del x.name
+     |
+     |  __getattribute__(...)
+     |      x.__getattribute__('name') <==> x.name
+     |
+     |  __getitem__(...)
+     |      x.__getitem__(y) <==> x[y]
+     |
+     |  __getslice__(...)
+     |      x.__getslice__(i, j) <==> x[i:j]
+     |
+     |      Use of negative indices is not supported.
+     |
+     |  __reduce__(...)
+     |
+     |  __repr__(...)
+     |      x.__repr__() <==> repr(x)
+     |
+     |  __setattr__(...)
+     |      x.__setattr__('name', value) <==> x.name = value
+     |
+     |  __setstate__(...)
+     |
+     |  __str__(...)
+     |      x.__str__() <==> str(x)
+     |
+     |  __unicode__(...)
+     |
+     |  ----------------------------------------------------------------------
+     |  Data descriptors inherited from exceptions.BaseException:
+     |
+     |  __dict__
+     |
+     |  args
+     |
+     |  message
+
+    class UnimplementedHmacDigestAuthOptionError(HttpLib2ErrorWithResponse)
+     |  Method resolution order:
+     |      UnimplementedHmacDigestAuthOptionError
+     |      HttpLib2ErrorWithResponse
+     |      HttpLib2Error
+     |      exceptions.Exception
+     |      exceptions.BaseException
+     |      __builtin__.object
+     |
+     |  Methods inherited from HttpLib2ErrorWithResponse:
+     |
+     |  __init__(self, desc, response, content)
+     |
+     |  ----------------------------------------------------------------------
+     |  Data descriptors inherited from HttpLib2Error:
+     |
+     |  __weakref__
+     |      list of weak references to the object (if defined)
+     |
+     |  ----------------------------------------------------------------------
+     |  Data and other attributes inherited from exceptions.Exception:
+     |
+     |  __new__ = <built-in method __new__ of type object>
+     |      T.__new__(S, ...) -> a new object with type S, a subtype of T
+     |
+     |  ----------------------------------------------------------------------
+     |  Methods inherited from exceptions.BaseException:
+     |
+     |  __delattr__(...)
+     |      x.__delattr__('name') <==> del x.name
+     |
+     |  __getattribute__(...)
+     |      x.__getattribute__('name') <==> x.name
+     |
+     |  __getitem__(...)
+     |      x.__getitem__(y) <==> x[y]
+     |
+     |  __getslice__(...)
+     |      x.__getslice__(i, j) <==> x[i:j]
+     |
+     |      Use of negative indices is not supported.
+     |
+     |  __reduce__(...)
+     |
+     |  __repr__(...)
+     |      x.__repr__() <==> repr(x)
+     |
+     |  __setattr__(...)
+     |      x.__setattr__('name', value) <==> x.name = value
+     |
+     |  __setstate__(...)
+     |
+     |  __str__(...)
+     |      x.__str__() <==> str(x)
+     |
+     |  __unicode__(...)
+     |
+     |  ----------------------------------------------------------------------
+     |  Data descriptors inherited from exceptions.BaseException:
+     |
+     |  __dict__
+     |
+     |  args
+     |
+     |  message
+
+DATA
+    __all__ = ['Http', 'Response', 'ProxyInfo', 'HttpLib2Error', 'Redirect...
+    __author__ = 'Joe Gregorio (joe@bitworking.org)'
+    __contributors__ = ['Thomas Broyer (t.broyer@ltgt.net)', 'James Antill...
+    __copyright__ = 'Copyright 2006, Joe Gregorio'
+    __license__ = 'MIT'
+    __version__ = '0.10.3'
+    debuglevel = 0
+
+VERSION
+    0.10.3
+
+AUTHOR
+    Joe Gregorio (joe@bitworking.org)
+
+
+
+Process finished with exit code 0
+
+
+
+
+/usr/bin/python3.5 /home/mohansai/python/Mohansai_samples/HTTP/sample/sample.py
+b'<!DOCTYPE html>\n<!--[if IE 8]><html class="ie ie8"> <![endif]-->\n<!--[if IE 9]><html class="ie ie9"> <![endif]-->\n<!--[if gt IE'
+b'9]><!-->\t<html> <!--<![endif]-->\n<head>\n<!-- Basic -->\n<meta charset="utf-8">\n<title>Python Loops</title>\n<meta name="descriptio'
+b'n" content="Python Loops - Learning Python in simple and easy steps : A beginner\'s tutorial containing complete knowledge of Pyt'
+b'hon Syntax Object Oriented Language, Methods, Tuples, Tools/Utilities, Exceptions Handling, Sockets, GUI, Extentions, XML Progra'
+b'mming." />\n<meta name="Keywords" content="Python, Tutorials, Learning, Beginners, Basics, Object Oriented Language, Methods, Ove'
+b'rriding, Networking, Multithreading,Methods, Tuples, Tools/Utilities, Exceptions Handling, Sockets, GUI, Extentions, XML, Progra'
+b'mming." />\n<base href="https://www.tutorialspoint.com/" />\r\n<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />'
+b'<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes">\r\n<meta property="og:locale" content="e'
+b'n_US" />\r\n<meta property="og:type" content="website" />\r\n<meta property="fb:app_id" content="471319149685276" />\r\n<meta property'
+b'="og:site_name" content="www.tutorialspoint.com" />\r\n<meta name="robots" content="index, follow"/>\r\n<meta name="apple-mobile-web'
+b'-app-capable" content="yes">\r\n<meta name="apple-mobile-web-app-status-bar-style" content="black">\r\n<meta name="author" content="'
+b'tutorialspoint.com">\r\n<script type="text/javascript" src="https://www.tutorialspoint.com/theme/js/script-min-v4.js"></script>\r\n<'
+b'link rel="stylesheet" href="https://www.tutorialspoint.com/theme/css/style-min.css">\r\n<!-- Head Libs -->\r\n<!--[if IE 8]>\r\n<link'
+b'rel="stylesheet" type="text/css" href="/theme/css/ie8.css">\r\n<![endif]-->\r\n<style>\r\npre.prettyprint.tryit {min-height:37px; back'
+b'ground: #eee url(/python/images/try-it.jpg) top right no-repeat !important}select{ border:0 !important; outline: 1px inset black'
+b'!important; outline-offset: -1px !important; }\r\nul.nav-list.primary>li a.videolink{    background: none; margin: 0px; padding:'
+b'0px; border: 1px solid #d6d6d6;}\r\ndiv.feature-box div.feature-box-icon, .col-md-3 .course-box, li.heading, div.footer-copyright'
+b'{ background: #fdbf00 url(/images/pattern.png) repeat center center !important;}\r\n.sub-main-menu .sub-menuu div:hover, .sub-main'
+b'-menu .viewall, header nav ul.nav-main li a:hover, button.btn-responsive-nav, header div.search button.btn-default { background:'
+b'#fdbf00 !important;}\r\n.submenu-item{ border-bottom: 2px solid #fdbf00 !important; border-top: 2px solid #fdbf00 !important }\r\n.'
+b'ace_scroller{overflow: auto!important;}\r\n</style>\r\n<script>\r\n$(document).ready(function() {\r\n  $(\'input[name="q"]\').keydown(func'
+b'tion(event){\r\n    if(event.keyCode == 13) {\r\n      event.preventDefault();\r\n      return false;\r\n    }\r\n  });\r\n});\r\n</script>\r\n<'
+b'/head>\r\n<body onload="prettyPrint()">\r\n<div class="wrapLoader">\r\n   <div class="imgLoader">\r\n      <img  src="/images/loading-cg'
+b'.gif" alt="" width="70" height="70" />\r\n   </div>\r\n</div>\r\n<header>\r\n   <div class="container">\t\t\t\r\n      <h1 class="logo">'
+b'<a href="index.htm" title="tutorialspoint">\r\n      <img alt="tutorialspoint" src="/python/images/logo.png">\n      </a>'
+b'</h1>\t\t\t\r\n      <nav>\r\n         <ul class="nav nav-pills nav-top">\r\n            <li><a href="/about/about_careers.htm" style="b'
+b'ackground: #fffb09; font-weight: bold;"><i class="icon icon-suitcase"></i> Jobs</a></li>\r\n            <li> <a href="http://www.s'
+b'endfiles.net"><i class="fa fa-send"></i> &nbsp;SENDFiles</a> </li>\r\n            <li> <a href="https://www.tutorialspoint.com/whi'
+b'teboard.htm"><img src="theme/css/icons/image-editor.png" alt="Whiteboard" title="Whiteboard"> &nbsp;Whiteboard</a> </li>'
+b'<li> <a href="https://www.tutorialspoint.com/netmeeting.php"><i class="fa-camera"></i> &nbsp;Net Meeting</a> </li>'
+b'<li> <a href="/online_dev_tools.htm"> <i class="dev-tools-menu" style="opacity:.5"></i> Tools </a> </li>\r\n            <li>'
+b'<a href="/articles/index.php"><i class="icon icon-file-text-o"></i> &nbsp;Articles</a> </li>            \r\n            <li class'
+b'="top-icons">\r\n              <ul class="social-icons">\r\n              <li class="facebook"><a href="https://www.facebook.com/tut'
+b'orialspointindia" target="_blank" data-placement="bottom" title="tutorialspoint @ Facebook">Facebook</a></li>\r\n              <li'
+b'class="googleplus"><a href="https://plus.google.com/u/0/116678774017490391259/posts" target="_blank" data-placement="bottom" ti'
+b'tle="tutorialspoint @ Google+">Google+</a></li>\r\n              <li class="twitter"><a href="https://www.twitter.com/tutorialspoi'
+b'nt" target="_blank" data-placement="bottom" title="tutorialspoint @ Twitter">Twitter</a></li>\r\n              <li class="linkedin'
+b'"><a href="https://www.linkedin.com/company/tutorialspoint" target="_blank" data-placement="bottom" title="tutorialspoint @ Link'
+b'edin">Linkedin</a></li>\r\n              <li class="youtube"><a href="https://www.youtube.com/channel/UCVLbzhxVTiTLiVKeGV7WEBg" ta'
+b'rget="_blank" data-placement="bottom" title="tutorialspoint YouTube">YouTube</a></li>\r\n              </ul>\r\n           </li>'
+b'</ul>\r\n      </nav>\r\n         <!-- search code here  --> \r\n      <button class="btn btn-responsive-nav btn-inverse" data-'
+b'toggle="collapse" data-target=".nav-main-collapse" id="pull" style="top: 24px!important"> <i class="icon icon-bars"></i> </butto'
+b'n>\r\n   </div>\r\n  \r\n   <div class="navbar nav-main">\r\n      <div class="container">\r\n         <nav class="nav-main mega-menu">'
+b'<ul class="nav nav-pills nav-main" id="mainMenu">\r\n               <li class="dropdown no-sub-menu"> <a class="dropdow'
+b'n" href="index.htm"><i class="icon icon-home"></i> Home</a> </li>   \r\n               <li class="dropdown" id="liTL"><a class="dr'
+b'opdown" href="javascript:void(0);"><span class="tut-lib"> Tutorials Library <i class="fa-caret-down"></i></span></a></li>'
+b'<li class="dropdown no-sub-menu"><a class="dropdown" href="codingground.htm"><i class="fa-code"></i> Coding Ground </a'
+b'> </li>\r\n               <li class="dropdown no-sub-menu"><a class="dropdown" href="tutor_connect/index.php"><i class="fa-user">'
+b'</i> Tutor Connect</a></li>\r\n               <li class="dropdown no-sub-menu"><a class="dropdown" href="videotutorials/index.htm"'
+b'><i class="fa-toggle-right"></i> Videos </a></li>\r\n               <li class="dropdown no-sub-menu">\r\n                  <div clas'
+b's="searchform-popup">\r\n                     <input class="header-search-box" type="text" id="search-string" name="q" placeholder'
+b'="Search your favorite tutorials..." onfocus="if (this.value == \'Search your favorite tutorials...\') {this.value = \'\';}" onblur='
+b'"if (this.value == \'\') {this.value = \'Search your favorite tutorials...\';}" autocomplete="off">\r\n                     <div class'
+b'="magnifying-glass"><i class="icon-search"></i> Search </div>\r\n                 </div>\r\n               </li>\r\n            </ul>'
+b'</nav>\r\n         <div class="submenu-item sub-main-menu" id="top-sub-menu"></div>\r\n         \r\n      </div>\r\n   </div>'
+b'</header>\r\n<div style="clear:both;"></div>\r\n<div role="main" class="main">\n<div class="container">\n<div class="row">\n<div clas'
+b's="col-md-2">\n<aside class="sidebar">\n<style>\r\nul.nav-list.primary>li a.videolink {\r\n    background: none;\r\n    margin: 0px;'
+b'padding: 0px;\r\n    border: 1px solid #d6d6d6;\r\n}\r\n</style>\r\n<div class="mini-logo">\r\n<img src="/python/images/python-mini.jpg"'
+b'alt="Python Tutorial" />\r\n</div>\r\n<ul class="nav nav-list primary left-menu" >\r\n<li><a class="videolink" href="/python_online_t'
+b'raining/index.asp" target="_blank"><img src="/python/images/python-video-tutorials.jpg" alt="Python Video Tutorials" /></a></li>'
+b'</ul>\r\n<ul class="nav nav-list primary left-menu">\r\n<li class="heading">Python Basic Tutorial</li>\r\n<li><a target="_top" href='
+b'"/python/index.htm">Python - Home</a></li>\r\n<li><a target="_top" href="/python/python_overview.htm">Python - Overview</a></li>'
+b'<li><a target="_top" href="/python/python_environment.htm">Python - Environment Setup</a></li>\r\n<li><a target="_top" href="/pyth'
+b'on/python_basic_syntax.htm">Python - Basic Syntax</a></li>\r\n<li><a target="_top" href="/python/python_variable_types.htm">Python'
+b'- Variable Types</a></li>\r\n<li><a target="_top" href="/python/python_basic_operators.htm">Python - Basic Operators</a></li>\r\n<l'
+b'i><a target="_top" href="/python/python_decision_making.htm">Python - Decision Making</a></li>\r\n<li><a target="_top" href="/pyth'
+b'on/python_loops.htm">Python - Loops</a></li>\r\n<li><a target="_top" href="/python/python_numbers.htm">Python - Numbers</a></li>'
+b'<li><a target="_top" href="/python/python_strings.htm">Python - Strings</a></li>\r\n<li><a target="_top" href="/python/python_list'
+b's.htm">Python - Lists</a></li>\r\n<li><a target="_top" href="/python/python_tuples.htm">Python - Tuples</a></li>\r\n<li><a target="_'
+b'top" href="/python/python_dictionary.htm">Python - Dictionary</a></li>\r\n<li><a target="_top" href="/python/python_date_time.htm"'
+b'>Python - Date &amp; Time</a></li>\r\n<li><a target="_top" href="/python/python_functions.htm">Python - Functions</a></li>\r\n<li><a'
+b'target="_top" href="/python/python_modules.htm">Python - Modules</a></li>\r\n<li><a target="_top" href="/python/python_files_io.h'
+b'tm">Python - Files I/O</a></li>\r\n<li><a target="_top" href="/python/python_exceptions.htm">Python - Exceptions</a></li>\r\n</ul>'
+b'<ul class="nav nav-list primary left-menu">\r\n<li class="heading">Python Advanced Tutorial</li>\r\n<li><a target="_top" href="/pyth'
+b'on/python_classes_objects.htm">Python - Classes/Objects</a></li>\r\n<li><a target="_top" href="/python/python_reg_expressions.htm"'
+b'>Python - Reg Expressions</a></li>\r\n<li><a target="_top" href="/python/python_cgi_programming.htm">Python - CGI Programming</a><'
+b'/li>\r\n<li><a target="_top" href="/python/python_database_access.htm">Python - Database Access</a></li>\r\n<li><a target="_top" hre'
+b'f="/python/python_networking.htm">Python - Networking</a></li>\r\n<li><a target="_top" href="/python/python_sending_email.htm">Pyt'
+b'hon - Sending Email</a></li>\r\n<li><a target="_top" href="/python/python_multithreading.htm">Python - Multithreading</a></li>\r\n<l'
+b'i><a target="_top" href="/python/python_xml_processing.htm">Python - XML Processing</a></li>\r\n<li><a target="_top" href="/python'
+b'/python_gui_programming.htm">Python - GUI Programming</a></li>\r\n<li><a target="_top" href="/python/python_further_extensions.htm'
+b'">Python - Further Extensions</a></li>\r\n</ul>\r\n<ul class="nav nav-list primary left-menu">\r\n<li class="heading">Python  Useful R'
+b'esources</li>\r\n<li><a target="_top" href="/python/python_questions_answers.htm">Python - Questions and Answers</a></li>\r\n<li><a'
+b'target="_top" href="/python/python_quick_guide.htm">Python - Quick Guide</a></li>\r\n<li><a target="_top" href="/python/python_too'
+b'ls_utilities.htm">Python - Tools/Utilities</a></li>\r\n<li><a target="_top" href="/python/python_useful_resources.htm">Python - Us'
+b'eful Resources</a></li>\r\n<li><a target="_top" href="/python/python_discussion.htm">Python - Discussion</a></li>\r\n</ul>\r\n<ul clas'
+b's="nav nav-list primary push-bottom left-menu special">\n<li class="sreading">Selected Reading</li>\n<li><a target="_top" href="/d'
+b'evelopers_best_practices/index.htm">Developer\'s Best Practices</a></li>\n<li><a target="_top" href="/questions_and_answers.htm">Q'
+b'uestions and Answers</a></li>\n<li><a target="_top" href="/effective_resume_writing.htm">Effective Resume Writing</a></li>\n<li><a'
+b'target="_top" href="/hr_interview_questions/index.htm">HR Interview Questions</a></li>\n<li><a target="_top" href="/computer_glo'
+b'ssary.htm">Computer Glossary</a></li>\n<li><a target="_top" href="/computer_whoiswho.htm">Who is Who</a></li>\n</ul>\n</aside>\n</di'
+b'v>\n<!-- PRINTING STARTS HERE -->\n<div class="row">\n<div class="content">\n<div class="col-md-7 middle-col">\n<h1>Python Loops</h1>'
+b'<div class="topgooglead">\n<hr />\n<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>\n<script type="text/jav'
+b'ascript"><!--\ngoogle_ad_client = "pub-7133395778201029";\ngoogle_ad_width = 468;\ngoogle_ad_height = 60;\ngoogle_ad_format = "468x6'
+b'0_as";\ngoogle_ad_type = "image";\ngoogle_ad_channel = "";\n//--></script>\n<script type="text/javascript"\nsrc="https://pagead2.goog'
+b'lesyndication.com/pagead/show_ads.js"> \n</script>\n</div>\n<hr>\n<div class="pre-btn">\n<a href="/python/python_decision_making.htm"'
+b'><i class="icon icon-arrow-circle-o-left big-font"></i> Previous Page</a>\n</div>\n<div class="nxt-btn">\n<a href="/python/python_n'
+b'umbers.htm">Next Page <i class="icon icon-arrow-circle-o-right big-font"></i>&nbsp;</a>\n</div>\n<div class="clearer"></div>\n<hr /'
+b'>\n<p>In general, statements are executed sequentially: The first statement in a function is executed first, followed by the seco'
+b'nd, and so on. There may be a situation when you need to execute a block of code several number of times.</p>\n<p>Programming lan'
+b'guages provide various control structures that allow for more complicated execution paths.</p>\n<p>A loop statement allows us to'
+b'execute a statement or group of statements multiple times. The following diagram illustrates a loop statement &minus;</p>\n<img s'
+b'rc="/python/images/loop_architecture.jpg" alt="Loop Architecture" />\n<p>Python programming language provides following types of'
+b'loops to handle looping requirements.</p>\n<table class="table table-bordered">\n<tr><th style="width:30%">
+
+Loop Type</th><th>Descr'
+b'iption</th></tr>\n<tr><td><p><a href="/python/python_while_loop.htm"
+
+title="WHILE loop in Python">while loop</a></p></td>\n<td>Rep'
+b'eats a statement or group of statements while a given condition is TRUE. It tests the condition before executing the loop body.<'
+b'/td></tr>\n<tr><td><p><a href="/python/python_for_loop.htm"
+
+
+ title="FOR loop in Python">for loop</a></p></td>\n<td>Executes a seque'
+b'nce of statements multiple times and abbreviates the code that manages the loop variable.</td></tr>\n<tr><td><p>
+
+<a href="/python/'
+b'python_nested_loops.htm" title="nested loops in Python">nested loops</a></p></td><td>You can use one or more loop inside any ano'
+b'ther while, for or do..while loop.</td></tr>\n
+
+
+
+</table>\n<h2>Loop Control Statements</h2>\n<p>Loop control statements change executi'
+b'on from its normal sequence. When execution leaves a scope, all automatic objects that were created in that scope are destroyed.'
+b'</p>\n<p>Python supports the following control statements. Click the following links to check their detail.</p>\n<table class="tab'
+b'le table-bordered">\n<tr><th style="width:30%">
+
+Control Statement</th><th>Description</th></tr>\n<tr><td><p><a href="/python/python'
+b'_break_statement.htm"
+
+
+title="break statement in Python">break statement</a></p></td>\n<td>Terminates the loop statement and trans'
+b'fers execution to the statement immediately following the loop.</td></tr>\n<tr><td><p><a href="/python/python_continue_statement.'
+b'htm"
+
+ title="continue statement in Python">continue statement</a></p></td>\n<td>Causes the loop to skip the remainder of its body'
+b'and immediately retest its condition prior to reiterating.</td></tr>\n<tr><td><p><a href="/python/python_pass_statement.
+
+
+htm" titl'
+b'e="pass statement in Python">pass statement</a></p></td>\n<td>The pass statement in Python is used when a statement is required s'
+b'yntactically but you do not want any command or code to execute.</td></tr>\n</table>\n<p>Let us go through the loop control statem'
+b'ents briefly &minus;</p>\n<hr />\n<div class="pre-btn">\n<a href="/python/python_decision_making.htm"><i class="icon icon-arrow-cir'
+b'cle-o-left big-font"></i> Previous Page</a>\n</div>\n<div class="print-btn center">\n<a href="/cgi-bin/printpage.cgi" target="_blan'
+b'k"><i class="icon icon-print big-font"></i> Print</a>\n</div>\n<div class="pdf-btn">\n<a href="/python/pdf/python_loops.pdf" title='
+b'"Python Loops" target="_blank"><i class="icon icon-file-pdf-o big-font"></i> PDF</a>\n</div>\n<div class="nxt-btn">\n<a href="/pyth'
+b'on/python_numbers.htm">Next Page <i class="icon icon-arrow-circle-o-right big-font"></i>&nbsp;</a>\n</div>\n<hr>\n<!-- PRINTING END'
+b'S HERE -->\n<div class="bottomgooglead">\n<div class="bottomadtag">Advertisements</div>\n<script type="text/javascript"><!--\nvar wi'
+b'dth = 580;\nvar height = 400;\nvar format = "580x400_as";\nif( window.innerWidth < 468 ){\n   width = 300;\n   height = 250;\n   forma'
+b't = "300x250_as";\n}\ngoogle_ad_client = "pub-7133395778201029";\ngoogle_ad_width = width;\ngoogle_ad_height = height;\ngoogle_ad_for'
+b'mat = format;\ngoogle_ad_type = "image";\ngoogle_ad_channel ="";\n//--></script>\n<script type="text/javascript"\nsrc="https://pagead'
+b'2.googlesyndication.com/pagead/show_ads.js">\n</script>\n</div>\n</div>\n</div>\n<div class="row">\n<div class="col-md-3" id="rightbar'
+b'">\n<div class="simple-ad">\n<a href="javascript:void(0)" onclick="var sTop = window.screen.height/2-(218); var sLeft = window.scr'
+b"een.width/2-(313);window.open('https://www.facebook.com/sharer.php?u=' + 'http://www.tutorialspoint.com/python/python_loops.htm'"
+b',\'sharer\',\'toolbar=0,status=0,width=626,height=456,top=\'+sTop+\',left=\'+sLeft);return false;">\n<img src="/images/facebookIcon.jpg'
+b'" alt="img" />\n</a>\n<a  href="javascript:void(0)" onclick="var sTop = window.screen.height/2-(218); var sLeft = window.screen.wi'
+b"dth/2-(313);window.open('https://twitter.com/share?url=' + 'http://www.tutorialspoint.com/python/python_loops.htm','sharer','too"
+b'lbar=0,status=0,width=626,height=456,top=\'+sTop+\',left=\'+sLeft);return false;">\n<img src="/images/twitterIcon.jpg" alt="img" />'
+b'</a>\n<a  href="javascript:void(0)" onclick="var sTop = window.screen.height/2-(218); var sLeft = window.screen.width/2-(313);win'
+b"dow.open('https://www.linkedin.com/cws/share?url=' + 'http://www.tutorialspoint.com/python/python_loops.htm&amp;title='+ documen"
+b't.title,\'sharer\',\'toolbar=0,status=0,width=626,height=456,top=\'+sTop+\',left=\'+sLeft);return false;">\n<img src="/images/linkedinI'
+b'con.jpg" alt="img" />\n</a>\n<a  href="javascript:void(0)" onclick="var sTop = window.screen.height/2-(218); var sLeft = window.sc'
+b"reen.width/2-(313);window.open('https://plus.google.com/share?url=http://www.tutorialspoint.com/python/python_loops.htm','sharer"
+b'\',\'toolbar=0,status=0,width=626,height=456,top=\'+sTop+\',left=\'+sLeft);return false;">\n<img src="/images/googlePlusIcon.jpg" alt='
+b'"img" />\n</a>\n<a  href="javascript:void(0)" onclick="var sTop = window.screen.height/2-(218); var sLeft = window.screen.width/2-'
+b"(313);window.open('https://www.stumbleupon.com/submit?url=http://www.tutorialspoint.com/python/python_loops.htm&amp;title='+ doc"
+b'ument.title,\'sharer\',\'toolbar=0,status=0,width=626,height=456,top=\'+sTop+\',left=\'+sLeft);return false;">\n<img src="/images/Stumb'
+b'leUponIcon.jpg" alt="img" />\n</a>\n<a  href="javascript:void(0)" onclick="var sTop = window.screen.height/2-(218); var sLeft = wi'
+b"ndow.screen.width/2-(313);window.open('https://reddit.com/submit?url=http://www.tutorialspoint.com/python/python_loops.htm&amp;t"
+b'itle=\'+ document.title,\'sharer\',\'toolbar=0,status=0,width=626,height=656,top=\'+sTop+\',left=\'+sLeft);return false;">\n<img src="/i'
+b'mages/reddit.jpg" alt="img" />\n</a>\n</div>\n<div class="rightgooglead">\n<script type="text/javascript"><!--\ngoogle_ad_client = "p'
+b'ub-7133395778201029";\ngoogle_ad_width = 300;\ngoogle_ad_height = 250;\ngoogle_ad_format = "300x250_as";\ngoogle_ad_type = "image";'
+b'google_ad_channel ="";\n//--></script>\n<script type="text/javascript"\nsrc="https://pagead2.googlesyndication.com/pagead/show_ads.'
+b'js">\n</script>\n</div>\n<div class="rightgooglead">\n<script type="text/javascript"><!--\ngoogle_ad_client = "pub-7133395778201029";'
+b'google_ad_width = 300;\ngoogle_ad_height = 600;\ngoogle_ad_format = "300x600_as";\ngoogle_ad_type = "image";\ngoogle_ad_channel =""'
+b';\n//--></script>\n<script type="text/javascript"\nsrc="https://pagead2.googlesyndication.com/pagead/show_ads.js">\n</script>\n</div>'
+b'<div class="rightgooglead">\n<script type="text/javascript"><!--\ngoogle_ad_client = "ca-pub-2537027957187252";\n/* Right Side Ad'
+b'*/\ngoogle_ad_slot = "right_side_ad";\ngoogle_ad_width = 300;\ngoogle_ad_height = 250;\n//-->\n</script>\n<script type="text/javascrip'
+b't"\nsrc="https://pagead2.googlesyndication.com/pagead/show_ads.js">\n</script>\n</div>\n</div>\n</div>\n</div>\n</div>\n</div>\n\n<div cla'
+b'ss="footer-copyright">\n<div class="container">\n<div class="row">\n<div class="col-md-1">\n<a href="index.htm" class="logo"> <img a'
+b'lt="Tutorials Point" class="img-responsive" src="/scripts/img/logo-footer.png"> </a>\n</div>\n<div class="col-md-4 col-sm-12 col-x'
+b's-12">\n   <nav id="sub-menu">\n      <ul>\n         <li><a href="/about/tutorials_writing.htm">Write for us</a></li>\n         <li>'
+b'<a href="/about/faq.htm">FAQ\'s</a></li>\n         <li><a href="/about/about_helping.htm">Helping</a></li>\n         <li><a href="/'
+b'about/contact_us.htm">Contact</a></li>\n      </ul>\n   </nav>\n</div>\n<div class="col-md-3 col-sm-12 col-xs-12">\n<p>&copy; Copyrig'
+b'ht 2017. All Rights Reserved.</p>\n</div>\n<div class="col-md-4 col-sm-12 col-xs-12">\n   <div class="news-group">\n      <input typ'
+b'e="text" class="form-control-foot search" name="textemail" id="textemail" autocomplete="off" placeholder="Enter email for newsle'
+b'tter" onfocus="if (this.value == \'Enter email for newsletter...\') {this.value = \'\';}" onblur="if (this.value == \'\') {this.value'
+b'= \'Enter email for newsletter...\';}">\n      <span class="input-group-btn"> <button class="btn btn-default btn-footer" id="btnema'
+b'il" type="submit" onclick="javascript:void(0);">go</button> </span>\n      <div id="newsresponse"></div>\n   </div>\n</div>\n</div>'
+b'</div>\n</div>\n</div>\n<!-- Libs -->\n<script type="text/javascript" src="/theme/js/custom-min.js?v=5"></script>\n<script src="https'
+b'://www.google-analytics.com/urchin.js">\n</script>\n<script type="text/javascript">\n_uacct = "UA-232293-6";\nurchinTracker();\n$(\'.p'
+b'g-icon\').click(function(){\n   $(\'.wrapLoader\').show();\n});\n</script>\n<script type="text/javascript" src="/theme/js/jquery.colorb'
+b'ox-min.js"></script>\n<script type="text/javascript">\n   var tryit = new $.TryIt(\'/python/try_python.php\');\n   tryit.compile();\n<'
+b'/script>\n<script type="application/ld+json">\n{\n    "@context": "https://schema.org",\n    "@type": "Article",\n    "headline": "Py'
+b'thon Loops",\n    "name": "Python Loops",\n    "mainEntityOfPage": {\n        "@type": "WebPage",\n        "@id": "https://www.tutor'
+b'ialspoint.com/python/python_loops.htm"\n    },\n    "image": {\n        "@type": "ImageObject",\n        "url": "https://www.tutoria'
+b'lspoint.com/python/images/loop_architecture.jpg",\n        "width": 304,\n        "height": 348\n    },\n    "author": {\n        "@t'
+b'ype": "Organization",\n        "name": "Tutorials Point",\n        "url": "https://www.tutorialspoint.com",\n        "logo": {'
+b'"@type": "ImageObject",\n            "url": "https://www.tutorialspoint.com/images/logo60.png",\n            "width": 210,'
+b'"height": 60\n        }\n    },\n    "datePublished": "August 15 2017 02:44:32.",\n    "dateModified": "August 15 2017'
+b'02:34:07.",\n    "publisher": {\n        "@type": "Organization",\n        "name": "Tutorials Point",\n        "url": "https://www.t'
+b'utorialspoint.com",\n        "logo": {\n            "@type": "ImageObject",\n            "url": "https://www.tutorialspoint.com/ima'
+b'ges/logo60.png",\n            "width": 210,\n            "height": 60\n        }\n    },\n    "description": "In general, statements'
+b'are executed sequentially: The first statement in a function is executed first, followed by the second, and so on. There may be'
+b'a situation when you need to execute a block of code several number of times...."\n}\n</script>\n<script type="application/ld+json"'
+b'>\n{\n    "@context": "https://schema.org",\n    "@type": "BreadcrumbList",\n    "itemListElement": [\n        {\n            "@type":'
+b'"ListItem",\n            "position": 1,\n            "item": {\n                "name": "www.tutorialspoint.com",'
+b'"@id": "https://www.tutorialspoint.com"\n            }\n        },\n        {\n            "@type": "ListItem",\n            "positio'
+b'n": 2,\n            "item": {\n                "name": "Python",\n                "@id": "https://www.tutorialspoint.com/python"'
+b'}\n        },\n        {\n            "@type": "ListItem",\n            "position": 3,\n            "item": {'
+b'"name": "Python - Loops"\n            }\n        }\n    ]\n}\n</script>\n</div>\n</body>\n</html>'
+{'Connection': 'keep-alive', 'Accept-Ranges': 'bytes', 'Vary': 'Accept-Encoding', 'Content-Encoding': 'gzip', 'Date': 'Sat, 07 Oct 2017 09:12:11 GMT', 'Content-Type': 'text/html; charset=UTF-8', 'Access-Control-Allow-Origin': '*', 'X-Version': '61', 'Access-Control-Allow-Headers': 'X-Requested-With', 'Age': '1123382', 'Server': 'v_i/3.7.1/3.6.0/v2blr1-www', 'Content-Length': '6115', 'Cache-Control': 'public,max-age=86400', 'X-Server': 'v/3.7.1/v2blr1-https'}
+
+Process finished with exit code 0
