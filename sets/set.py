@@ -3,5 +3,5 @@ print(my_set)
 
 # mixed data type
 
-my_set_1={1,0,10,"hello",(1,2,3),1,2}
+my_set_1={1,0,10,"hello",(1,2,3),1,2,10}
 print(my_set_1)
