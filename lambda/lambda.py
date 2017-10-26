@@ -42,6 +42,7 @@ In Python, we generally use it as an argument to a higher-order function (a func
 
 # Program to filter out only the even items from a list
 
+#filter
 my_list = [1, 5, 4, 6, 8, 11, 3, 12]
 
 new_list = list(filter(lambda x: (x%2 == 0) , my_list))
@@ -51,10 +52,13 @@ print(new_list)
 
 
 
+#map
+
+
 my_list1=[2,4,6,7,8,9,10,20]
 
-#new_my_list1=list(filter(lambda x:(x*2),my_list1))
-new_list1   =list(filter(lambda x:(x*2) , my_list))
+
+new_list1   =list(map(lambda x:x*2, my_list1))
 
 print(new_list1)
 
@@ -67,6 +71,10 @@ print("\n\n")
 for i in my_list1:
     print(mul(i))'''
 
+#fact :-
+n = 5
+
+print ("reduce",reduce(lambda x,y:x*y,range(1,n+1)))
 
 
 
