@@ -18,4 +18,4 @@ print (reduce(lambda x,y:x*y,n))
 
 
 data= reduce(lambda x,y:x+y,n)
-print data
+print (data)

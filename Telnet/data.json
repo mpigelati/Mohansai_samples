@@ -1,0 +1,22 @@
+[
+	{
+    	"Host"   :"localhost",
+		"user" :"mohansai",
+		"password" :"jnjnuhuh"
+	},
+	{
+		 "Host"   :"localhost",
+		 "user" :"sakethram",
+		 "password" :"jnjnuhuh"
+	},
+	{
+		"Host"   :"localhost",
+		 "user" :"manju",
+		 "password" :"jnjnuhuh"
+	},
+	{
+		 "Host"   :"localhost",
+		 "user" :"lekshana",
+		 "password" :"jnjnuhuh"
+	}
+]
